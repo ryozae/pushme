@@ -1,4 +1,75 @@
+@font-face {
+	font-family: "JelloJiggle";
+	src: url("https://assets.codepen.io/209981/JelloJiggleGX.ttf");
+}
+
+$orange: #e46f29;
+$primary-color: #fffd76;
+$secondary-color: $orange;
+
+html,
 body {
-    margin: 0;
-    overflow: hidden;
-  }
+	height: 100%;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-image: url("https://assets.codepen.io/209981/splort.jpg");
+	background-size: cover;
+	background-color: $orange;
+	background-blend-mode: color-dodge;
+}
+
+h1 {
+	font-family: "JelloJiggle";
+	text-transform: uppercase;
+	font-size: 20vw;
+	font-weight: 100;
+	transform: rotate(-10deg);
+	color: rgba(255, 255, 255, 0.5);
+	margin: 0;
+	line-height: 1;
+	mix-blend-mode: multiply;
+
+	&::before {
+		content: attr(data-text);
+		filter: invert(0.7);
+		position: absolute;
+		z-index: 2;
+		text-shadow: 20px 20px 10px rgba(0, 173, 255, 0.2),
+			16px 10px 5px rgba(153, 199, 255, 0.3), 8px 5px 5px rgba(153, 222, 255, 0.3),
+			4px 4px 5px #72b1ff;
+	}
+
+	&::after {
+		content: attr(data-text);
+		position: absolute;
+		z-index: 3;
+		mix-blend-mode: overlay;
+		color: #ffb153;
+		left: 0;
+
+		-webkit-text-fill-color: transparent;
+		background: linear-gradient(to bottom, #ffffff, #ff8100);
+		-webkit-background-clip: text;
+	}
+}
+
+.animation h1,
+.animation h1::after,
+.animation h1::before {
+	animation: fight 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes fight {
+	0% {
+		font-variation-settings: "wght" 100;
+	}
+
+	100% {
+		font-variation-settings: "wght" 400;
+	}
+}
